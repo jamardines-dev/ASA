@@ -1,11 +1,11 @@
 services:
   postgres:
     image: postgres:15-alpine
-    container_name: asaph-db
+    container_name: asaph-db-prod
     environment:
-      POSTGRES_DB: ashalert
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: jamjan08
+      POSTGRES_DB: ${POSTGRES_DB:-ashalert}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5433:5432"
     volumes:
@@ -15,35 +15,38 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: always
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: asaph-backend
+    container_name: asaph-backend-prod
     environment:
-      DB_URL: jdbc:postgresql://postgres:5432/ashalert
-      DB_DRIVER: org.postgresql.Driver
-      DB_USERNAME: postgres
-      DB_PASSWORD: jamjan08
-      SERVER_PORT: 8080
+      DB_URL: ${DB_URL:-jdbc:postgresql://postgres:5432/ashalert}
+      DB_DRIVER: ${DB_DRIVER:-org.postgresql.Driver}
+      DB_USERNAME: ${DB_USERNAME:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD}
+      SERVER_PORT: ${SERVER_PORT:-8080}
     ports:
       - "8080:8080"
     depends_on:
       postgres:
         condition: service_healthy
+    restart: always
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: asaph-frontend
-    environment:
-      VITE_API_BASE_URL: http://localhost:8080/api
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8080/api}
+    container_name: asaph-frontend-prod
     ports:
       - "3000:3000"
     depends_on:
       - backend
+    restart: always
 
 volumes:
   postgres_data:

@@ -31,7 +31,7 @@ public class AreaController {
     }
 
     /** Live push of the full area list whenever a status changes. */
-    @GetMapping("/areas/stream")
+    @GetMapping(value = "/areas/stream", produces = "text/event-stream")
     public SseEmitter stream() {
         return broadcaster.subscribe();
     }

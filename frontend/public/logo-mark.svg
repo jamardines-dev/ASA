@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" width="100%" height="100%">
+  <defs>
+    <style>
+      .stroke-teal { stroke: #0C5B7A; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .stroke-pin { stroke: #0C5B7A; stroke-width: 5; stroke-linecap: round; fill: #E6F0F4; }
+      .pulse-amber { fill: #854F0B; }
+      .ripple-arc { stroke: #854F0B; stroke-width: 4; stroke-linecap: round; fill: none; opacity: 0.7; }
+    </style>
+  </defs>
+
+  <!-- Centered Logo Mark Element -->
+  <g id="logo-mark-standalone" transform="translate(0, 5)">
+    <!-- Outer Shield Protection Line -->
+    <path d="M 25,25 L 115,25 C 115,25 125,75 70,125 C 15,75 25,25 25,25 Z" class="stroke-teal" />
+
+    <!-- Inner Map Pin Node -->
+    <path d="M 70,35 C 50,35 45,55 70,95 C 95,55 90,35 70,35 Z" class="stroke-pin" />
+
+    <!-- Center Real-time Signal/Pulse Dot -->
+    <circle cx="70" cy="55" r="10" class="pulse-amber" />
+
+    <!-- Broadcast/Ripple Arc -->
+    <path d="M 100,40 A 45,45 0 0,1 105,75" class="ripple-arc" />
+  </g>
+</svg>

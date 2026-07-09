@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 120" width="100%" height="100%">
+  <defs>
+    <style>
+      .text-asa { font-family: 'Inter', 'Poppins', sans-serif; font-weight: 800; font-size: 52px; fill: #1A242B; letter-spacing: 1px; }
+      .text-ph { font-family: 'Inter', 'Poppins', sans-serif; font-weight: 300; font-size: 52px; fill: #0C5B7A; letter-spacing: 1px; }
+      .text-tagline { font-family: 'Inter', 'Poppins', sans-serif; font-weight: 600; font-size: 15px; fill: #5A6E79; letter-spacing: 5px; }
+    </style>
+  </defs>
+
+  <g id="logo-text-standalone" transform="translate(10, 60)">
+    <text x="0" y="0">
+      <tspan class="text-asa">ASA</tspan>
+      <tspan class="text-ph"> PH</tspan>
+    </text>
+    <text x="3" y="32" class="text-tagline">AREA SAFETY ALERT</text>
+  </g>
+</svg>

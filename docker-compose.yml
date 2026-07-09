@@ -22,7 +22,8 @@ services:
       dockerfile: Dockerfile
     container_name: asaph-backend
     environment:
-      DATABASE_URL: jdbc:postgresql://postgres:5432/ashalert
+      DB_URL: jdbc:postgresql://postgres:5432/ashalert
+      DB_DRIVER: org.postgresql.Driver
       DB_USERNAME: postgres
       DB_PASSWORD: jamjan08
       SERVER_PORT: 8080

@@ -25,19 +25,6 @@ const pinIcon = L.divIcon({
   iconAnchor: [14, 28],
 })
 
-function areaMarkerIcon(status: AreaStatus['status'], justChanged: boolean) {
-  const classes = ['area-pin', status === 'UNSAFE' ? 'pulse-pin' : '', justChanged ? 'flash-pin' : '']
-    .filter(Boolean)
-    .join(' ')
-  return L.divIcon({
-    className: classes,
-    html: `<div class="area-pin-body" style="--pin-color: ${STATUS_META[status].color}"></div>`,
-    iconSize: [22, 22],
-    iconAnchor: [11, 20],
-    popupAnchor: [0, -18],
-  })
-}
-
 function reportMarkerIcon() {
   return L.divIcon({
     className: 'report-pin',
@@ -96,12 +83,16 @@ export default function AreaMap({
 
       {areas.map((area) => {
         const meta = STATUS_META[area.status]
-        const justChanged = changedIds.has(area.id)
         return (
-          <Marker
+          <Circle
             key={area.id}
-            position={[area.latitude, area.longitude]}
-            icon={areaMarkerIcon(area.status, justChanged)}
+            center={[area.latitude, area.longitude]}
+            radius={ZONE_RADIUS_METERS}
+            className={changedIds.has(area.id) ? 'zone-flash' : ''}
+            pathOptions={{
+              stroke: false,
+              fillOpacity: 0,
+            }}
             eventHandlers={{ click: () => onSelect(area) }}
           >
             <Popup>
@@ -117,7 +108,7 @@ export default function AreaMap({
                 </div>
               )}
             </Popup>
-          </Marker>
+          </Circle>
         )
       })}
 

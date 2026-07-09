@@ -1,6 +1,6 @@
 import type { AreaStatus, SafetyCheck } from './types'
 
-const BASE = '/api'
+const BASE = import.meta.env.VITE_API_BASE_URL || '/api'
 
 export async function fetchAreaStatuses(): Promise<AreaStatus[]> {
   const res = await fetch(`${BASE}/areas/status`)
